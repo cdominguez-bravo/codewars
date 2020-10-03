@@ -1,5 +1,7 @@
 package kata.codewars;
 
+import java.util.stream.IntStream;
+
 public class SolutionMultiples35 {
 
   public int solution(int number) {
@@ -8,21 +10,19 @@ public class SolutionMultiples35 {
 
       for (int i =0; i <number; i++){
 
-        if(i % 3 == 0 ){
+        if(i % 3 == 0 || i % 5 == 0){
           sumAllMultiples += i;
         }
-
-        if(i % 5 == 0 ){
-          sumAllMultiples += i;
-        }
-
-        if(i % 3 == 0 && i % 5 == 0){
-          sumAllMultiples = sumAllMultiples - i;
-        }
-
-        System.out.println("sumAllMultiples "+ sumAllMultiples);
       }
       return sumAllMultiples;
+  }
+
+  /**Clever**/
+
+  public int solution1(int number) {
+    return IntStream.range(0, number)
+        .filter(n -> (n % 3 == 0) || (n % 5 == 0))
+        .sum();
   }
 
   public static void main(String[] args) {
